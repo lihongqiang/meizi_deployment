@@ -1,0 +1,45 @@
+[INFO  - 2016-11-13T10:24:20.307Z] GhostDriver - Main - running on port 19370
+[INFO  - 2016-11-13T10:24:21.041Z] Session [573a5dd0-a98b-11e6-9d12-89f31e8136ec] - page.settings - {"XSSAuditingEnabled":false,"javascriptCanCloseWindows":true,"javascriptCanOpenWindows":true,"javascriptEnabled":true,"loadImages":true,"localToRemoteUrlAccessEnabled":false,"userAgent":"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/538.1 (KHTML, like Gecko) PhantomJS/2.1.1 Safari/538.1","webSecurityEnabled":true}
+[INFO  - 2016-11-13T10:24:21.041Z] Session [573a5dd0-a98b-11e6-9d12-89f31e8136ec] - page.customHeaders:  - {}
+[INFO  - 2016-11-13T10:24:21.041Z] Session [573a5dd0-a98b-11e6-9d12-89f31e8136ec] - Session.negotiatedCapabilities - {"browserName":"phantomjs","version":"2.1.1","driverName":"ghostdriver","driverVersion":"1.2.0","platform":"windows-7-32bit","javascriptEnabled":true,"takesScreenshot":true,"handlesAlerts":false,"databaseEnabled":false,"locationContextEnabled":false,"applicationCacheEnabled":false,"browserConnectionEnabled":false,"cssSelectorsEnabled":true,"webStorageEnabled":false,"rotatable":false,"acceptSslCerts":false,"nativeEvents":true,"proxy":{"proxyType":"direct"}}
+[INFO  - 2016-11-13T10:24:21.041Z] SessionManagerReqHand - _postNewSessionCommand - New Session Created: 573a5dd0-a98b-11e6-9d12-89f31e8136ec
+[ERROR - 2016-11-13T10:24:21.262Z] Session [573a5dd0-a98b-11e6-9d12-89f31e8136ec] - page.onError - msg: TypeError: undefined is not an object (evaluating 'DataTable.defaults')
+[ERROR - 2016-11-13T10:24:21.262Z] Session [573a5dd0-a98b-11e6-9d12-89f31e8136ec] - page.onError - stack:
+  (anonymous function) (http://localhost:48279/src/dataTables.bootstrap.js:47)
+  (anonymous function) (http://localhost:48279/src/dataTables.bootstrap.js:39)
+[ERROR - 2016-11-13T10:24:21.262Z] Session [573a5dd0-a98b-11e6-9d12-89f31e8136ec] - page.onError - msg: TypeError: undefined is not an object (evaluating 'f.defaults')
+[ERROR - 2016-11-13T10:24:21.262Z] Session [573a5dd0-a98b-11e6-9d12-89f31e8136ec] - page.onError - stack:
+  (anonymous function) (http://localhost:48279/src/dataTables.bootstrap.min.js:5)
+  (anonymous function) (http://localhost:48279/src/dataTables.bootstrap.min.js:5)
+[ERROR - 2016-11-13T10:24:21.263Z] Session [573a5dd0-a98b-11e6-9d12-89f31e8136ec] - page.onError - msg: TypeError: undefined is not a constructor (near '...}).draw();...')
+[ERROR - 2016-11-13T10:24:21.263Z] Session [573a5dd0-a98b-11e6-9d12-89f31e8136ec] - page.onError - stack:
+  global code (http://localhost:48279/src/homejs.js:18)
+[ERROR - 2016-11-13T10:24:21.303Z] Session [573a5dd0-a98b-11e6-9d12-89f31e8136ec] - page.onError - msg: ReferenceError: Can't find variable: require
+[ERROR - 2016-11-13T10:24:21.303Z] Session [573a5dd0-a98b-11e6-9d12-89f31e8136ec] - page.onError - stack:
+  global code (http://localhost:48279/src/npm.js:2)
+[ERROR - 2016-11-13T10:24:21.304Z] Session [573a5dd0-a98b-11e6-9d12-89f31e8136ec] - page.onError - msg: TypeError: undefined is not a constructor (evaluating '$('#table_id_example').DataTable()')
+[ERROR - 2016-11-13T10:24:21.304Z] Session [573a5dd0-a98b-11e6-9d12-89f31e8136ec] - page.onError - stack:
+  (anonymous function) (http://localhost:48279/src/homejs.js:6)
+  j (http://localhost:48279/lib/angular-bootstrap.js:2)
+  fireWith (http://localhost:48279/lib/angular-bootstrap.js:2)
+  ready (http://localhost:48279/lib/angular-bootstrap.js:2)
+  I (http://localhost:48279/lib/angular-bootstrap.js:2)
+[INFO  - 2016-11-13T10:24:21.460Z] ShutdownReqHand - _handle - About to shutdown
+[INFO  - 2016-11-13T11:52:04.345Z] GhostDriver - Main - running on port 39544
+[INFO  - 2016-11-13T11:52:05.054Z] Session [98d301a0-a997-11e6-bdb5-2fc235a30188] - page.settings - {"XSSAuditingEnabled":false,"javascriptCanCloseWindows":true,"javascriptCanOpenWindows":true,"javascriptEnabled":true,"loadImages":true,"localToRemoteUrlAccessEnabled":false,"userAgent":"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/538.1 (KHTML, like Gecko) PhantomJS/2.1.1 Safari/538.1","webSecurityEnabled":true}
+[INFO  - 2016-11-13T11:52:05.054Z] Session [98d301a0-a997-11e6-bdb5-2fc235a30188] - page.customHeaders:  - {}
+[INFO  - 2016-11-13T11:52:05.054Z] Session [98d301a0-a997-11e6-bdb5-2fc235a30188] - Session.negotiatedCapabilities - {"browserName":"phantomjs","version":"2.1.1","driverName":"ghostdriver","driverVersion":"1.2.0","platform":"windows-7-32bit","javascriptEnabled":true,"takesScreenshot":true,"handlesAlerts":false,"databaseEnabled":false,"locationContextEnabled":false,"applicationCacheEnabled":false,"browserConnectionEnabled":false,"cssSelectorsEnabled":true,"webStorageEnabled":false,"rotatable":false,"acceptSslCerts":false,"nativeEvents":true,"proxy":{"proxyType":"direct"}}
+[INFO  - 2016-11-13T11:52:05.054Z] SessionManagerReqHand - _postNewSessionCommand - New Session Created: 98d301a0-a997-11e6-bdb5-2fc235a30188
+[ERROR - 2016-11-13T11:52:05.348Z] Session [98d301a0-a997-11e6-bdb5-2fc235a30188] - page.onError - msg: ReferenceError: Can't find variable: require
+[ERROR - 2016-11-13T11:52:05.348Z] Session [98d301a0-a997-11e6-bdb5-2fc235a30188] - page.onError - stack:
+  global code (http://localhost:51177/src/npm.js:2)
+[INFO  - 2016-11-13T11:52:05.443Z] ShutdownReqHand - _handle - About to shutdown
+[INFO  - 2016-11-13T11:54:01.084Z] GhostDriver - Main - running on port 14396
+[INFO  - 2016-11-13T11:54:01.781Z] Session [de65fb00-a997-11e6-a85c-61b6cab218f9] - page.settings - {"XSSAuditingEnabled":false,"javascriptCanCloseWindows":true,"javascriptCanOpenWindows":true,"javascriptEnabled":true,"loadImages":true,"localToRemoteUrlAccessEnabled":false,"userAgent":"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/538.1 (KHTML, like Gecko) PhantomJS/2.1.1 Safari/538.1","webSecurityEnabled":true}
+[INFO  - 2016-11-13T11:54:01.781Z] Session [de65fb00-a997-11e6-a85c-61b6cab218f9] - page.customHeaders:  - {}
+[INFO  - 2016-11-13T11:54:01.781Z] Session [de65fb00-a997-11e6-a85c-61b6cab218f9] - Session.negotiatedCapabilities - {"browserName":"phantomjs","version":"2.1.1","driverName":"ghostdriver","driverVersion":"1.2.0","platform":"windows-7-32bit","javascriptEnabled":true,"takesScreenshot":true,"handlesAlerts":false,"databaseEnabled":false,"locationContextEnabled":false,"applicationCacheEnabled":false,"browserConnectionEnabled":false,"cssSelectorsEnabled":true,"webStorageEnabled":false,"rotatable":false,"acceptSslCerts":false,"nativeEvents":true,"proxy":{"proxyType":"direct"}}
+[INFO  - 2016-11-13T11:54:01.781Z] SessionManagerReqHand - _postNewSessionCommand - New Session Created: de65fb00-a997-11e6-a85c-61b6cab218f9
+[ERROR - 2016-11-13T11:54:02.068Z] Session [de65fb00-a997-11e6-a85c-61b6cab218f9] - page.onError - msg: ReferenceError: Can't find variable: require
+[ERROR - 2016-11-13T11:54:02.068Z] Session [de65fb00-a997-11e6-a85c-61b6cab218f9] - page.onError - stack:
+  global code (http://localhost:51272/src/npm.js:2)
+[INFO  - 2016-11-13T11:54:02.231Z] ShutdownReqHand - _handle - About to shutdown
