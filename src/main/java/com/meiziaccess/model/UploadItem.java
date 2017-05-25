@@ -51,8 +51,17 @@ public class UploadItem {
     @Column(name = "material_type")
     String material_type;           //成片 素材
 
+    @Column(name = "audit_id")
+    int auditid;
+
     @Column(name = "status")
     int status;
+
+    @Column(name = "inform")
+    private String inform;
+
+    @Column(name = "token")
+    private int token;
 
     public UploadItem() {
         this.upload = true;
@@ -67,7 +76,9 @@ public class UploadItem {
         this.path = "";
         this.material_type = "成片";
         this.status = 0;
-
+        this.auditid = 0;
+        this.inform = "";
+        this.token = 0;
     }
 
     public UploadItem(String title, String md5, String path) {
@@ -89,7 +100,7 @@ public class UploadItem {
 
     public UploadItem(boolean upload, String title, Date upload_time, int duration, int price_type,
                       double price, String copyright_type, int copyright_duration, String md5, String path,
-                      String material_type, int status) {
+                      String material_type, int auditid, int status) {
         this.upload = upload;
         this.title = title;
         this.upload_time = upload_time;
@@ -102,6 +113,7 @@ public class UploadItem {
         this.path = path;
         this.material_type = material_type;
         this.status = status;
+        this.auditid = auditid;
     }
 
     public Long getId() {
@@ -206,6 +218,22 @@ public class UploadItem {
 
     public void setStatus(int status) {
         this.status = status;
+    }
+
+    public String getInform() {
+        return inform;
+    }
+
+    public void setInform(String inform) {
+        this.inform = inform;
+    }
+
+    public int getToken() {
+        return token;
+    }
+
+    public void setToken(int token) {
+        this.token = token;
     }
 
     @Override

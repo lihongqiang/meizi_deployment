@@ -100,14 +100,12 @@
             ],
             paging: false
         });
-
 //        $('input').iCheck({
 //            checkboxClass: 'icheckbox_minimal',
 //            radioClass: 'iradio_minimal',
 //            increaseArea: '20%' // optional
 //        });
 //        table.draw();
-
         //全选
         $('input.checkAll').on('click', function() {
             if ($(this).prop("checked") === true) {
@@ -120,7 +118,6 @@
                 $('#upload_data tbody tr').removeClass('selected');
             }
         });
-
         //单选
         $('#upload_data tbody').on('click', 'tr input[name="checkItem"]', function () {
             var $tr = $(this).parents('tr');
@@ -128,7 +125,6 @@
             var $tmp = $('[name=checkItem]:checkbox');
             $('#checkAll').prop('checked', $tmp.length == $tmp.filter(':checked').length);
         });
-
         $('#button').click(function () {
             var rows = table.rows('.selected');
             if(rows.data().length == 0){
@@ -160,13 +156,10 @@
             }
             var isOk = 0;
             alert("正在上传,请稍后");
-
             document.getElementById("div").style.display="";
             var bar = document.getElementById("bar");
             var total = document.getElementById("total");
             var barsize = parseInt(bar.style.width);
-
-
             var timeout = window.setInterval(function(){
                 barsize = barsize +1;
                 bar.style.width = barsize + "%";
@@ -176,14 +169,11 @@
                    // document.getElementById("div").style.display="none";
                     return;
                 }
-
             }, 100);
-
             $('#button').prop('disabled', true);
             bar.style.width = barsize + "%";
             total.innerHTML = bar.style.width;
             rows.every( function ( rowIdx, tableLoop, rowLoop ) {
-
                 var d = this.data();
 //                console.log(d);
                 $.ajax({
@@ -199,23 +189,19 @@
 //                        this.invalidate(); // invalidate the data DataTables has cached for this row
                         isOk += 1;
                         barsize = barsize +1;
-
                         if(isOk == num && barsize == 100){
-
                             alert("上传成功");
                             window.location.reload();
                            // document.getElementById("div").style.display="none";
                             rows.remove().draw(false);
                             $('#button').prop('disabled', false);
                         }
-
 //                    $('#result').text(data.result);
                     } // 注意不要在此行增加逗号
                 });
                 this.invalidate(); // invalidate the data DataTables has cached for this row
             } );
 //            rows.remove().draw(false);
-
         });
         $('#upload_data tbody').on('change', 'tr select[name=material_type]', function(){
             var material_type = $(this).children('option:selected').val();
@@ -223,12 +209,10 @@
             $row.data()['material_type'] = material_type;
             $row.draw();
         });
-
         $('#upload_data tbody').on('change', 'tr select[name=copyright_type]', function(){
             var copyright_type = $(this).children('option:selected').val();
             var $row = table.row($(this).parents('tr'));
             $row.data()['copyright_type'] = copyright_type;
-
             if( copyright_type == "RF"){
                 $row.data()['copyright_duration'] = 5;
                 var id = $row.index();
@@ -255,16 +239,13 @@
 //            console.log($row.data());
             $row.draw();
         });
-
         $('#upload_data tbody').on('change', 'tr select[name=copyright_duration]', function(){
             var copyright_duration = $(this).children('option:selected').val();
             var $row = table.row($(this).parents('tr'));
             $row.data()['copyright_duration'] = copyright_duration;
-
 //            console.log($row.data());
             $row.draw();
         });
-
         $('#upload_data tbody').on('change', 'tr input[name=price]', function(){
             var price = $(this).val();
             var check = function isTrueName(s){
@@ -282,17 +263,13 @@
                 $(this).val("");
             }
         });
-
         $('#upload_data tbody').on('change', 'tr select[name=price_type]', function(){
             var price_type = $(this).get(0).selectedIndex;
             var $row = table.row($(this).parents('tr'));
             $row.data()['price_type'] = price_type;
-
 //            console.log($row.data());
             $row.draw();
         });
-
-
         $('#del').click(function () {
             var rows = table.rows('.selected');
             if(rows.data().length == 0){
@@ -302,16 +279,13 @@
             var isOk = 0;
             var num = rows.data().length;
             alert("正在删除,请稍后");
-
             $('#del').prop('disabled', true);
-
             rows.every( function ( rowIdx, tableLoop, rowLoop ) {
-
                 var d = this.data();
 //                console.log(d);
                 $.ajax({
                     type: "post",
-                    url: 'http://localhost:9921/upload-association',
+                    url: 'http://localhost:9921/delete-association',
                     async: true, // 使用异步方式
                     // 1 需要使用JSON.stringify 否则格式为 a=2&b=3&now=14...
                     // 2 需要强制类型转换，否则格式为 {"a":"2","b":"3"}
@@ -326,7 +300,6 @@
                             rows.remove().draw(false);
                             $('#del').prop('disabled', false);
                         }
-
 //                    $('#result').text(data.result);
                     } // 注意不要在此行增加逗号
                 });
@@ -334,21 +307,19 @@
             } );
 //            rows.remove().draw(false);
         });
-
         $('#refresh').click(function () {
-            alert("正为您请稍后。。。");
             $.ajax({
                 type : "post",
-                url : "http://localhost:9921/data-refresh-association"
+               url : "http://localhost:9921/data-refresh-association",
+                success:function(data){
+                    alert("刷新成功");
+                    location.reload();
+                }
             });
-            alert("刷新成功");
-            location.reload();
+
 
         });
-
-
     });
-
 </script>
 
 <div ng-show="authenticated">
@@ -405,3 +376,4 @@
         <p>&copy; 2016 Company, Inc.</p>
     </footer>
 </div>
+
