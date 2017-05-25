@@ -17,6 +17,7 @@
     //    });
     $(document).ready(function(){
         var table = $('#upload_data').DataTable({
+//            ajax: "http://61.48.40.126:9921/data-source-association",
             ajax: "http://localhost:9921/data-source-association",
             columns:[
                 { data: 'upload'},
@@ -188,6 +189,7 @@
 //                console.log(d);
                 $.ajax({
                     type: "post",
+//                    url: 'http://61.48.40.126:9921/upload-association',
                     url: 'http://localhost:9921/upload-association',
                     async: true, // 使用异步方式
                     // 1 需要使用JSON.stringify 否则格式为 a=2&b=3&now=14...
@@ -311,6 +313,7 @@
 //                console.log(d);
                 $.ajax({
                     type: "post",
+//                    url: 'http://61.48.40.126:9921/delete-association',
                     url: 'http://localhost:9921/upload-association',
                     async: true, // 使用异步方式
                     // 1 需要使用JSON.stringify 否则格式为 a=2&b=3&now=14...
@@ -339,6 +342,7 @@
             alert("正为您请稍后。。。");
             $.ajax({
                 type : "post",
+//                url : "http://61.48.40.126:9921/data-refresh-association"
                 url : "http://localhost:9921/data-refresh-association"
             });
             alert("刷新成功");
@@ -396,7 +400,7 @@
             <h1>接入服务器</h1>
             <p></p>
             <p>
-                <a class="btn btn-lg btn-primary" href="http://61.48.40.126/" role="button">媒资平台 &raquo;</a>
+                <a class="btn btn-lg btn-primary" href="http://162.105.16.229/" role="button">媒资平台 &raquo;</a>
             </p>
         </div>
 

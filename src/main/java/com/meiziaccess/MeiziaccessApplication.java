@@ -49,23 +49,23 @@ public class MeiziaccessApplication  {
 
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
-//		JSONObject objData = MyHttpUtil.post(username, password);
+		JSONObject objData = MyHttpUtil.post(username, password);
 
-//		if(objData == null){
-//			model.put("status", false);
-//		}else{
-//			if(objData.getInt("code") ==  200){
-//				model.put("status", true);
-//				int vendor_type = objData.getInt("data");
-//				System.out.println("session-set-username=" + username);
-//				request.getSession().setAttribute("username", username);
-//				request.getSession().setAttribute("vendor_type", vendor_type);
-//				System.out.println(objData.toString());
-//			}else{
-//				model.put("status", false);
-//			}
-//		}
-		model.put("status",true);
+		if(objData == null){
+			model.put("status", false);
+		}else{
+			if(objData.getInt("code") ==  200){
+				model.put("status", true);
+				vendor_type = objData.getInt("data");
+				System.out.println("session-set-username=" + username);
+				request.getSession().setAttribute("username", username);
+				request.getSession().setAttribute("vendor_type", vendor_type);
+				System.out.println(objData.toString());
+			}else{
+				model.put("status", false);
+			}
+		}
+//		model.put("status",true);
 		request.getSession().setAttribute("username", username);
 				request.getSession().setAttribute("vendor_type", vendor_type);
 		return model;

@@ -27,7 +27,7 @@ public class MyHttpUtil {
     /*
         默认的一些参数
     */
-    public static final String ADD_URL = "http://162.105.16.229/clientAppLogin";
+    public static final String ADD_URL = "http://192.168.1.8/clientAppLogin";
     private static final String appid  = "vendor_system";
     private static final String appSecret  = "b62fdc77-3506-49bf-900f-93ac354fd23a";
 
