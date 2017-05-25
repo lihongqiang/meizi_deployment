@@ -65,9 +65,6 @@ public class MeiziaccessApplication  {
 				model.put("status", false);
 			}
 		}
-//		model.put("status",true);
-		request.getSession().setAttribute("username", username);
-				request.getSession().setAttribute("vendor_type", vendor_type);
 		return model;
 	}
 

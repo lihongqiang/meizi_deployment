@@ -152,6 +152,9 @@ public class UploadTool implements UploadToolInterface {
                                     1,
                                     5,
                                     "",
+                                    "",
+                                    0,
+                                    false,
                                     "");
         //xml??????
         log.setXml_trans_path(trans_path + "/" +"trans_"+new Date().getTime()+"_"+xmlName);
@@ -159,6 +162,8 @@ public class UploadTool implements UploadToolInterface {
         //????????p4??????
         String videoTransName = videoName.split("\\.")[0] + ".mp4";
         log.setVideo_play_path(play_path+"/"+videoTransName);
+
+
 
         uploadLogRepository.save(log);
         return true;
@@ -489,6 +494,12 @@ public class UploadTool implements UploadToolInterface {
 
         String remoteKeyFramesPath = remotePath + "/keyFrames";
 
+        int status = 0;
+
+        boolean on_shelf = false;
+
+        String md5 = item.getMd5();
+
         for (int i = 0; i < tempList.length; i++) {
             if (tempList[i].isFile()) {
                 try {
@@ -515,7 +526,7 @@ public class UploadTool implements UploadToolInterface {
 
         //????????
         updateDatabase( xmlName, videoName, uploadLogRepository,  remotePath,
-                upload_vendor_name,  uploader_name,  vendorPath, trans_path, play_path, item,  remoteKeyFramesPath);
+                upload_vendor_name,  uploader_name,  vendorPath, trans_path, play_path, item,  remoteKeyFramesPath, status, on_shelf, md5);
         return true;
     }
 
@@ -594,6 +605,12 @@ public class UploadTool implements UploadToolInterface {
         String lowCodeVideoPath = paths[1];
         String highCodeVideoPath = paths[2];
 
+        int status = 0;
+
+        boolean on_shelf = false;
+
+        String md5 = item.getMd5();
+
         String keyFramePath = "";
         if (paths.length == 4){
             keyFramePath = paths[3];
@@ -645,7 +662,7 @@ public class UploadTool implements UploadToolInterface {
 
         //只支持单个xml，关键帧，低码文件对应
         updateDatabase( xmlName, videoName, uploadLogRepository,  remotePath,
-                upload_vendor_name,  uploader_name,  highCodeVideoPath, trans_path, play_path, item,  remoteKeyFramesPath);
+                upload_vendor_name,  uploader_name,  highCodeVideoPath, trans_path, play_path, item,  remoteKeyFramesPath, status, on_shelf, md5);
         return true;
     }
 
@@ -662,11 +679,15 @@ public class UploadTool implements UploadToolInterface {
      * @param play_path             媒资平台播放路径
      * @param item                  视频类
      * @param remoteKeyFramesPath                关键帧文件夹路径
+     * @param status                审核状态
+     * @param on_shelf              上架状态
+     * @param md5
      * @return
      */
     public boolean updateDatabase(List<String> xmlName, String videoName, UploadLogRepository uploadLogRepository,
                                   String upload_remote_path,String upload_vendor_name, String uploader_name, String vendor_path,
-                                  String trans_path, String play_path, UploadItem item, String remoteKeyFramesPath) {
+                                  String trans_path, String play_path, UploadItem item, String remoteKeyFramesPath, int status,
+                                  boolean on_shelf, String md5) {
 
         String xmlOriginName = xmlName.get(0);
         //xml
@@ -730,13 +751,15 @@ public class UploadTool implements UploadToolInterface {
                 item.getPrice_type(),   //价格类型
                 duration,    //版权时间
                 framesPath,
-                material_type
+                material_type,
+                status,
+                on_shelf,
+                md5
         );
         log.setXml_trans_path(trans_path + "/" +"trans_"+new Date().getTime()+"_"+xmlOriginName);
 
         String videoTransName = videoName.split("\\.")[0] + ".mp4";
         log.setVideo_play_path(play_path+"/"+videoTransName);
-
         uploadLogRepository.save(log);
         return true;
     }
@@ -753,7 +776,7 @@ public class UploadTool implements UploadToolInterface {
 
         try {
 
-            ChannelSftp sftp = SftpUtil.getSftpConnect("162.105.16.229", 8022, "luyj", "pkulky201");
+            ChannelSftp sftp = SftpUtil.getSftpConnect("192.168.1.8",22, "luyj", "pkulky201");
             SftpUtil.mkdir(remote_full_path, sftp);
 
             for(int i=0; i<list.size(); i++){
@@ -798,7 +821,7 @@ public class UploadTool implements UploadToolInterface {
 
         try {
 
-            ChannelSftp sftp = SftpUtil.getSftpConnect("162.105.16.229", 8022, "luyj", "pkulky201");
+            ChannelSftp sftp = SftpUtil.getSftpConnect("192.168.1.8",22, "luyj", "pkulky201");
             SftpUtil.mkdir(remote_full_path, sftp);
 
             for(int i=0; i<list.size(); i++){

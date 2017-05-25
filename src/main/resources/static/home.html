@@ -108,7 +108,7 @@
 //        table.draw();
         //全选
         $('input.checkAll').on('click', function() {
-            if ($(this).prop("checked") === true) {
+            if ($(this).prop("checked") == true) {
 //                $("input").iCheck('check');
                 $("input[name='checkItem']").prop("checked", $(this).prop("checked"));
                 $('#upload_data tbody tr').addClass('selected');
@@ -156,23 +156,23 @@
             }
             var isOk = 0;
             alert("正在上传,请稍后");
-            document.getElementById("div").style.display="";
-            var bar = document.getElementById("bar");
-            var total = document.getElementById("total");
-            var barsize = parseInt(bar.style.width);
-            var timeout = window.setInterval(function(){
-                barsize = barsize +1;
-                bar.style.width = barsize + "%";
-                total.innerHTML = bar.style.width;
-                if (barsize == 99) {
-                    window.clearInterval(timeout);
-                   // document.getElementById("div").style.display="none";
-                    return;
-                }
-            }, 100);
+//            document.getElementById("div").style.display="";
+//            var bar = document.getElementById("bar");
+//            var total = document.getElementById("total");
+//            var barsize = parseInt(bar.style.width);
+//            var timeout = window.setInterval(function(){
+//                barsize = barsize +1;
+//                bar.style.width = barsize + "%";
+//                total.innerHTML = bar.style.width;
+//                if (barsize == 99) {
+//                    window.clearInterval(timeout);
+//                   // document.getElementById("div").style.display="none";
+//                    return;
+//                }
+//            }, 100);
             $('#button').prop('disabled', true);
-            bar.style.width = barsize + "%";
-            total.innerHTML = bar.style.width;
+//            bar.style.width = barsize + "%";
+//            total.innerHTML = bar.style.width;
             rows.every( function ( rowIdx, tableLoop, rowLoop ) {
                 var d = this.data();
 //                console.log(d);
@@ -188,8 +188,8 @@
                     success: function(data) {
 //                        this.invalidate(); // invalidate the data DataTables has cached for this row
                         isOk += 1;
-                        barsize = barsize +1;
-                        if(isOk == num && barsize == 100){
+//                        barsize = barsize +1;
+                        if(isOk == num ){
                             alert("上传成功");
                             window.location.reload();
                            // document.getElementById("div").style.display="none";
@@ -367,7 +367,7 @@
             <h1>接入服务器</h1>
             <p></p>
             <p>
-                <a class="btn btn-lg btn-primary" href="http://61.48.40.126/" role="button">媒资平台 &raquo;</a>
+                <a class="btn btn-lg btn-primary" href="http://192.168.1.8/" role="button">媒资平台 &raquo;</a>
             </p>
         </div>
 
@@ -376,4 +376,3 @@
         <p>&copy; 2016 Company, Inc.</p>
     </footer>
 </div>
-

@@ -46,7 +46,8 @@ public interface UploadToolInterface  {
     //更新远程数据库
     public boolean updateDatabase(List<String> xmlName, String videoName, UploadLogRepository uploadLogRepository,
                                   String upload_remote_path, String upload_vendor_name, String uploader_name, String vendor_path,
-                                  String trans_path, String play_path, UploadItem item, String remoteKeyFramesPath);
+                                  String trans_path, String play_path, UploadItem item, String remoteKeyFramesPath, int status,
+                                  boolean on_shelf, String md5);
 
     //上传每一个视频文件夹
     public  boolean uploadItems(final String fileDir, final String remotePath, final ChannelSftp sftp,

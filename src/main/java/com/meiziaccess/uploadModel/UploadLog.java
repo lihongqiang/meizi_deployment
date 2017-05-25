@@ -17,7 +17,7 @@ public class UploadLog {
     public UploadLog(String vendor_name, Date upload_time, String uploader_name,
                      String xml_upload_path, String video_upload_path, String vendor_path,
                      double video_price, String video_copyright, int video_price_type, int video_copyright_duration,
-                     String frame_extract_path, String material_type) {
+                     String frame_extract_path, String material_type, int status, boolean on_shelf, String md5) {
         this.vendor_name = vendor_name;
         this.upload_time = upload_time;
         this.uploader_name = uploader_name;
@@ -30,7 +30,12 @@ public class UploadLog {
         this.video_copyright_duration = video_copyright_duration;
         this.frame_extract_path = frame_extract_path;
         this.material_type = material_type;
+        this.status = status;
+        this.on_shelf = on_shelf;
+        this.md5 = md5;
     }
+
+
 
     public String toString(){
         return getUploader_name() + " " + getUpload_time() + "file for " + getVideo_price() + " with " + getVideo_copyright();
@@ -86,6 +91,48 @@ public class UploadLog {
 
     @Column(name = "material_type")
     private String material_type;
+
+    @Column(name ="status")
+    private int status;
+
+    @Column(name ="on_shelf")
+    private boolean on_shelf;
+
+    @Column(name = "md5")
+    private String md5;
+
+
+    public int getLog_id() {
+        return log_id;
+    }
+
+    public void setLog_id(int log_id) {
+        this.log_id = log_id;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public boolean isOn_shelf() {
+        return on_shelf;
+    }
+
+    public void setOn_shelf(boolean on_shelf) {
+        this.on_shelf = on_shelf;
+    }
+
+    public String getMd5() {
+        return md5;
+    }
+
+    public void setMd5(String md5) {
+        this.md5 = md5;
+    }
 
     public String getVendor_name() {
         return vendor_name;
