@@ -90,7 +90,7 @@ public class MeiziaccessApplication  {
 	@ResponseBody
 	public Map<String, Object> getItemsAssociation(HttpServletRequest request) {
 		Map<String, Object> map = new HashMap<>();
-		List<UploadItem> uploadstatus = uploadRepository.findByStatus(0);
+		List<UploadItem> uploadstatus = uploadRepository.findByStatusAndVendor_type(0,vendor_type);
 		map.put("data",uploadstatus);
 		return map;
 	}
@@ -128,6 +128,7 @@ public class MeiziaccessApplication  {
 			if(uploadRepository.findByTitle(list.get(i).getTitle()).isEmpty()){
 				list.get(i).setUpload_time(new Date());
 				list.get(i).setUpload(true);
+				list.get(i).setVendor_type(vendor_type);
 				uploadRepository.save(list.get(i));
 			}else {
 				System.out.println("有了");
@@ -238,7 +239,7 @@ public class MeiziaccessApplication  {
 	//已上传页面数据
 	@RequestMapping( "/end_data" )
 	public Map<String, Object> home_end(){
-		List<UploadItem> uploadItems = uploadRepository.findByStatus(1);
+		List<UploadItem> uploadItems = uploadRepository.findByStatusAndVendor_type(1, vendor_type);
 		Map<String, Object> map = new HashMap<>();
 		map.put("data",uploadItems);
 		return map;

@@ -47,18 +47,18 @@ public class OrderController {
      //订单项API
      @RequestMapping(value = "/post_media", method = RequestMethod.POST, produces = "application/json;charset-UTF-8")
      @ResponseBody
-     public Map<String, Object> orderItem(@RequestBody ItemMedia ord){
+     public Map<String, Object> orderItem(@RequestBody ItemMedia item){
          Map<String, Object> order_return = new HashMap<String, Object>();
 
          //查找order表中的是否存在orderid
-         List<ItemOrder> o_list = orderRepository.findOrderByOrderid(ord.getOrderid());
+         List<ItemOrder> o_list = orderRepository.findOrderByOrderid(item.getOrderid());
          ItemMedia itemMedia ;
          ItemOrder order = new ItemOrder();
          if(o_list.isEmpty()){
              //生成order表中的URL
-             String o_url = "http://" + IPAddress + "/mediaAll?orderid=" + ord.getOrderid();
+             String o_url = "http://" + IPAddress + "/mediaAll?orderid=" + item.getOrderid();
              //添加order表中的记录
-             order.setOrderid(ord.getOrderid());
+             order.setOrderid(item.getOrderid());
              order.setUrl(o_url);
              order.setStatus(0);
 
@@ -70,38 +70,38 @@ public class OrderController {
              orderRepository.save(order);
 
              //生成item表中的URL
-             String i_url = "http://" + IPAddress + "/media?uuid=" + ord.getUuid();
-             ord.setUrl(i_url);
+             String i_url = "http://" + IPAddress + "/media?uuid=" + item.getUuid();
+             item.setUrl(i_url);
              //设置成0，表示还未完成转码
-             ord.setStatus(0);
-             ord.setOrder_video_path(order.getTrans_path()+"\\"+ord.getUuid()+"."+ord.getFormat());// order\\orderid\\uuid.mp4
-             itemMedia = itemMediaRepository.save(ord);
+             item.setStatus(0);
+             item.setOrder_video_path(order.getTrans_path()+"\\"+item.getUuid()+"."+item.getFormat());// order\\orderid\\uuid.mp4
+             itemMedia = itemMediaRepository.save(item);
 
              order_return.put("uuid", itemMedia.getUuid());
              order_return.put("status", itemMedia.getStatus());
              order_return.put("url", itemMedia.getUrl());
 
          }else{
-             List<ItemMedia> i_o_list = itemMediaRepository.findMediaByOrderid(ord.getOrderid());
+             List<ItemMedia> i_o_list = itemMediaRepository.findMediaByOrderid(item.getOrderid());
              int mag = 1;
              for(int j=0; j<i_o_list.size(); j++){
 
-                if(i_o_list.get(j).getUuid()==ord.getUuid()){
+                if(i_o_list.get(j).getUuid()==item.getUuid()){
                     mag = 0;
-                    order_return.put("uuid", ord.getUuid());
-                    order_return.put("status", ord.getStatus());
-                    order_return.put("url", ord.getUrl());
+                    order_return.put("uuid", item.getUuid());
+                    order_return.put("status", item.getStatus());
+                    order_return.put("url", item.getUrl());
                     break;
                 }
              }
              if(mag == 1){
-                 String i_url = "http://" + IPAddress + "/media?uuid=" + ord.getUuid();
-                 ord.setUrl(i_url);
+                 String i_url = "http://" + IPAddress + "/media?uuid=" + item.getUuid();
+                 item.setUrl(i_url);
                  //设置成0，表示还未完成转码
-                 ord.setStatus(0);
-                 String path = order_path + ord.getOrderid();
-                 ord.setOrder_video_path(path+"\\"+ord.getUuid()+"."+ord.getFormat());// order\\orderid\\uuid.mp4
-                 itemMedia = itemMediaRepository.save(ord);
+                 item.setStatus(0);
+                 String path = order_path + item.getOrderid();
+                 item.setOrder_video_path(path+"\\"+item.getUuid()+"."+item.getFormat());// order\\orderid\\uuid.mp4
+                 itemMedia = itemMediaRepository.save(item);
                  order_return.put("uuid", itemMedia.getUuid());
                  order_return.put("status", itemMedia.getStatus());
                  order_return.put("url", itemMedia.getUrl());
@@ -229,7 +229,7 @@ public class OrderController {
 
 
     //视频订单项下载链接
-    @RequestMapping(value = "/get_order_item", method = RequestMethod.GET)
+    @RequestMapping(value = "/get_item", method = RequestMethod.GET)
     public ResponseEntity downloadFile( Long uuid)
             throws IOException {
         //生成相应的文件下载链接

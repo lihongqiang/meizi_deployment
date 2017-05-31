@@ -13,8 +13,11 @@ import java.util.List;
 public interface UploadRepository extends JpaRepository<UploadItem, Long> {
     List<UploadItem> findUploadItemByMd5(String md5);
 
-    List<UploadItem> findByStatus(int status);
+    //List<UploadItem> findByStatusAndVendor_type(int status, int vendor_type);
 
     List<UploadItem> findByTitle(String title);
+
+    @Query("select u from UploadItem u where u.status=?1 and u.vendor_type=?2")
+    List<UploadItem> findByStatusAndVendor_type(int status, int vendor_type);
 
 }

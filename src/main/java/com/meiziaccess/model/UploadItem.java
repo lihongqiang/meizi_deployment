@@ -51,9 +51,6 @@ public class UploadItem {
     @Column(name = "material_type")
     String material_type;           //成片 素材
 
-    @Column(name = "audit_id")
-    int auditid;
-
     @Column(name = "status")
     int status;
 
@@ -62,6 +59,9 @@ public class UploadItem {
 
     @Column(name = "token")
     private int token;
+
+    @Column(name = "vendor_type")
+    private int vendor_type;
 
     public UploadItem() {
         this.upload = true;
@@ -76,9 +76,9 @@ public class UploadItem {
         this.path = "";
         this.material_type = "成片";
         this.status = 0;
-        this.auditid = 0;
         this.inform = "";
         this.token = 0;
+        this.vendor_type =0;
     }
 
     public UploadItem(String title, String md5, String path) {
@@ -100,7 +100,7 @@ public class UploadItem {
 
     public UploadItem(boolean upload, String title, Date upload_time, int duration, int price_type,
                       double price, String copyright_type, int copyright_duration, String md5, String path,
-                      String material_type, int auditid, int status) {
+                      String material_type,  int status) {
         this.upload = upload;
         this.title = title;
         this.upload_time = upload_time;
@@ -113,7 +113,14 @@ public class UploadItem {
         this.path = path;
         this.material_type = material_type;
         this.status = status;
-        this.auditid = auditid;
+    }
+
+    public int getVendor_type() {
+        return vendor_type;
+    }
+
+    public void setVendor_type(int vendor_type) {
+        this.vendor_type = vendor_type;
     }
 
     public Long getId() {

@@ -16,7 +16,6 @@
     $(document).ready(function() {
         $('#upload_data').DataTable({
             ajax: "http://61.48.40.126:9921/end_data",
-//            ajax: "http://162.105.16.229:9921/data-source-association",
             columns: [
                 {data: 'title'},
                 { data: 'upload_time' },
@@ -28,7 +27,39 @@
                 {data: 'token'},
                 {data: 'inform'}
             ],
-            columnDefs: [               {
+            columnDefs: [
+                {
+                    "targets": 0,
+                    "orderable": false,
+                    "data": "upload",
+                    "render": function ( data, type, full, meta ) {
+                        return '<input id="checkItem" type="checkbox" name="checkItem"  value=data>';
+                    }
+                },
+                {
+                    "targets":1,
+                    "orderable":false,
+                    "data":"upload_time",
+                    "render": function ( data, type, full, meta) {
+                        var date = new Date();
+                        data = date.toLocaleDateString();
+                        return data;
+                    }
+                },
+                {
+                    "targets": 2,
+                    "orderable": false,
+                    "data": "token",
+                    "render": function ( data, type, full, meta) {
+                        if(data == 0){
+                            data = "单价";
+                        }if(data == 1){
+                            data = "一口价";
+                        }
+                        return data;
+                    }
+                },
+                {
                 "targets": 7,
                 "orderable": false,
                 "data": "token",
@@ -67,6 +98,43 @@
                 },
             ],
         });
+        $('#del').click(function () {
+            var rows = table.rows('.selected');
+            if(rows.data().length == 0){
+                alert("请选择删除的视频");
+                return false;
+            }
+            var isOk = 0;
+            var num = rows.data().length;
+            alert("正在删除,请稍后");
+            $('#del').prop('disabled', true);
+            rows.every( function ( rowIdx, tableLoop, rowLoop ) {
+                var d = this.data();
+//                console.log(d);
+                $.ajax({
+                    type: "post",
+                    url: 'http://61.48.40.126:9921/delete-association',
+                    async: true, // 使用异步方式
+                    // 1 需要使用JSON.stringify 否则格式为 a=2&b=3&now=14...
+                    // 2 需要强制类型转换，否则格式为 {"a":"2","b":"3"}
+                    data: JSON.stringify(d),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function(data) {
+//                        this.invalidate(); // invalidate the data DataTables has cached for this row
+                        isOk += 1;
+                        if(isOk == num){
+                            alert("删除成功");
+                            rows.remove().draw(false);
+                            $('#del').prop('disabled', false);
+                        }
+//                    $('#result').text(data.result);
+                    } // 注意不要在此行增加逗号
+                });
+                this.invalidate(); // invalidate the data DataTables has cached for this row
+            } );
+//            rows.remove().draw(false);
+        });
     })
     </script>
 
@@ -89,6 +157,10 @@
             </thead>
 
         </table>
+
+        <div style="text-align:center;margin:0 auto;">
+            <button class="btn btn-default" id="del" >删除</button>
+        </div>
     </div>
 <!--</nav>-->
 </div>
